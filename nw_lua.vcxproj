@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CBD01511-B772-40E7-A02D-543B8C6EC737}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>nw_lua</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <OutDir>..\bin\</OutDir>
+    <IntDir>..\bin\int\debug\nw_lua\</IntDir>
+    <TargetName>nw_lua</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <OutDir>..\bin\</OutDir>
+    <IntDir>..\bin\int\release\nw_lua\</IntDir>
+    <TargetName>nw_lua</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>NW_PLATFORM_WINDOWS;DEBUG;NW_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src_cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>NW_PLATFORM_WINDOWS;NDEBUG;NW_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src_cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src_cpp\core\nwlua_engine.h" />
+    <ClInclude Include="src_cpp\core\nwlua_tools.h" />
+    <ClInclude Include="src_cpp\core\nwlua_wraps.h" />
+    <ClInclude Include="src_cpp\lib\nwlua_lib.h" />
+    <ClInclude Include="src_cpp\lib\nwlua_lib_aux.h" />
+    <ClInclude Include="src_cpp\nwlua.hpp" />
+    <ClInclude Include="src_cpp\nwlua_api.h" />
+    <ClInclude Include="src_cpp\nwlua_code.h" />
+    <ClInclude Include="src_cpp\nwlua_config.h" />
+    <ClInclude Include="src_cpp\nwlua_core.h" />
+    <ClInclude Include="src_cpp\nwlua_core.hpp" />
+    <ClInclude Include="src_cpp\nwlua_ctype.h" />
+    <ClInclude Include="src_cpp\nwlua_debug.h" />
+    <ClInclude Include="src_cpp\nwlua_do.h" />
+    <ClInclude Include="src_cpp\nwlua_func.h" />
+    <ClInclude Include="src_cpp\nwlua_gc.h" />
+    <ClInclude Include="src_cpp\nwlua_lex.h" />
+    <ClInclude Include="src_cpp\nwlua_limit.h" />
+    <ClInclude Include="src_cpp\nwlua_mem.h" />
+    <ClInclude Include="src_cpp\nwlua_obj.h" />
+    <ClInclude Include="src_cpp\nwlua_op_codes.h" />
+    <ClInclude Include="src_cpp\nwlua_op_names.h" />
+    <ClInclude Include="src_cpp\nwlua_parser.h" />
+    <ClInclude Include="src_cpp\nwlua_prefix.h" />
+    <ClInclude Include="src_cpp\nwlua_str.h" />
+    <ClInclude Include="src_cpp\nwlua_stt.h" />
+    <ClInclude Include="src_cpp\nwlua_tab.h" />
+    <ClInclude Include="src_cpp\nwlua_tab_jump.h" />
+    <ClInclude Include="src_cpp\nwlua_tagm.h" />
+    <ClInclude Include="src_cpp\nwlua_undump.h" />
+    <ClInclude Include="src_cpp\nwlua_vm.h" />
+    <ClInclude Include="src_cpp\nwlua_zbuf.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src_cpp\comp\luac.c" />
+    <ClCompile Include="src_cpp\core\nwlua_engine.cpp" />
+    <ClCompile Include="src_cpp\core\nwlua_tools.cpp" />
+    <ClCompile Include="src_cpp\lib\nwlua_lib_aux.c" />
+    <ClCompile Include="src_cpp\lib\nwlua_lib_base.c" />
+    <ClCompile Include="src_cpp\lib\nwlua_lib_db.c" />
+    <ClCompile Include="src_cpp\lib\nwlua_lib_io.c" />
+    <ClCompile Include="src_cpp\lib\nwlua_lib_load.c" />
+    <ClCompile Include="src_cpp\lib\nwlua_lib_os.c" />
+    <ClCompile Include="src_cpp\lib\nwlua_lib_str.c" />
+    <ClCompile Include="src_cpp\lib\nwlua_lib_tab.c" />
+    <ClCompile Include="src_cpp\nwlua.c" />
+    <ClCompile Include="src_cpp\nwlua_api.c" />
+    <ClCompile Include="src_cpp\nwlua_code.c" />
+    <ClCompile Include="src_cpp\nwlua_corolib.c" />
+    <ClCompile Include="src_cpp\nwlua_ctype.c" />
+    <ClCompile Include="src_cpp\nwlua_debug.c" />
+    <ClCompile Include="src_cpp\nwlua_do.c" />
+    <ClCompile Include="src_cpp\nwlua_dump.c" />
+    <ClCompile Include="src_cpp\nwlua_func.c" />
+    <ClCompile Include="src_cpp\nwlua_gc.c" />
+    <ClCompile Include="src_cpp\nwlua_init.c" />
+    <ClCompile Include="src_cpp\nwlua_lex.c" />
+    <ClCompile Include="src_cpp\nwlua_math.c" />
+    <ClCompile Include="src_cpp\nwlua_mem.c" />
+    <ClCompile Include="src_cpp\nwlua_obj.c" />
+    <ClCompile Include="src_cpp\nwlua_op_codes.c" />
+    <ClCompile Include="src_cpp\nwlua_parser.c" />
+    <ClCompile Include="src_cpp\nwlua_str.c" />
+    <ClCompile Include="src_cpp\nwlua_stt.c" />
+    <ClCompile Include="src_cpp\nwlua_tab.c" />
+    <ClCompile Include="src_cpp\nwlua_tagm.c" />
+    <ClCompile Include="src_cpp\nwlua_undump.c" />
+    <ClCompile Include="src_cpp\nwlua_utf8.c" />
+    <ClCompile Include="src_cpp\nwlua_vm.c" />
+    <ClCompile Include="src_cpp\nwlua_zbuf.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
