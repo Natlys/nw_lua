@@ -1,4 +1,7 @@
-# Prerequisites
+#directories
+bin/**
+
+# gPrerequisites
 *.d
 
 # Compiled Object files
@@ -30,3 +33,6 @@
 *.exe
 *.out
 *.app
+
+# Visual studio
+*.vcx**
