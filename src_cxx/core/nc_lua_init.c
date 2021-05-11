@@ -1,0 +1,65 @@
+/*
+** $Id: linit.c $
+** Initialization of libraries for lua.c and other clients
+** See Copyright Notice in lua_core.h
+*/
+
+
+#define linit_c
+#define NC_LUA_LIB
+
+/*
+** If you embed Lua in your program and need to open the standard
+** libraries, call luaL_openlibs in your program. If you need a
+** different set of libraries, copy this file to your project and edit
+** it to suit your needs.
+**
+** You can also *preload* libraries, so that a later 'require' can
+** open the library, which is already linked to the application.
+** For that, do the following code:
+**
+**  luaL_getsubtable(L, NC_LUA_REGISTRYINDEX, NC_LUA_PRELOAD_TABLE);
+**  lua_pushcfunction(L, luaopen_modname);
+**  lua_setfield(L, -2, modname);
+**  lua_pop(L, 1);  // remove PRELOAD table
+*/
+
+#include "nc_lua_prefix.h"
+
+
+#include <stddef.h>
+
+#include "nc_lua_core.h"
+
+#include "lib/nc_lua_lib.h"
+#include "lib/nc_lua_lib_aux.h"
+
+
+/*
+** these libs are loaded by lua.c and are readily available to any Lua
+** program
+*/
+static const luaL_Reg loadedlibs[] = {
+  {NC_LUA_GNAME, luaopen_base},
+  {NC_LUA_LOADLIBNAME, luaopen_package},
+  {NC_LUA_COLIBNAME, luaopen_coroutine},
+  {NC_LUA_TABLIBNAME, luaopen_table},
+  {NC_LUA_IOLIBNAME, luaopen_io},
+  {NC_LUA_OSLIBNAME, luaopen_os},
+  {NC_LUA_STRLIBNAME, luaopen_string},
+  {NC_LUA_MATHLIBNAME, luaopen_math},
+  {NC_LUA_UTF8LIBNAME, luaopen_utf8},
+  {NC_LUA_DBLIBNAME, luaopen_debug},
+  {NULL, NULL}
+};
+
+
+NC_LUA_API void luaL_openlibs (lua_State *L) {
+  const luaL_Reg *lib;
+  /* "require" functions from 'loadedlibs' and set results to global table */
+  for (lib = loadedlibs; lib->func; lib++) {
+    luaL_requiref(L, lib->name, lib->func, 1);
+    lua_pop(L, 1);  /* remove lib */
+  }
+}
+
