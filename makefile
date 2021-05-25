@@ -11,21 +11,30 @@ endif
 .PHONY: clean prebuild prelink
 
 ifeq ($(config),work_win64)
-  RESCOMP = windres
+  ifeq ($(origin CC), default)
+    CC = F:\dev\gcc\bin\gcc.exe
+  endif
+  ifeq ($(origin CXX), default)
+    CXX = F:\dev\gcc\bin\g++.exe
+  endif
+  ifeq ($(origin AR), default)
+    AR = ar
+  endif
+  RESCOMP = default
   TARGETDIR = bin_cxx
-  TARGET = $(TARGETDIR)/nc_lua.lib
+  TARGET = $(TARGETDIR)/nc_lua
   OBJDIR = bin_cxx/win64/work
-  DEFINES += -DDEBUG -DNC_DEBUG
-  INCLUDES += -I%(prj.name)/src_cxx
+  DEFINES +=
+  INCLUDES += -Isrc_cxx
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -ffloat-store -g -std=c99
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -ffloat-store -g
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -ffloat-store -g -w -std=c99 -fpermissive
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -ffloat-store -g -w -fpermissive
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += ../nc_lib/bin_cxx/nc_lib.lib
-  LDDEPS += ../nc_lib/bin_cxx/nc_lib.lib
-  ALL_LDFLAGS += $(LDFLAGS) -L../nc_cfg -L../nc_lib -L/usr/lib64 -m64
-  LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
+  LIBS += ../nc_cfg/bin_cxx/nc_cfg.lib
+  LDDEPS += ../nc_cfg/bin_cxx/nc_cfg.lib
+  ALL_LDFLAGS += $(LDFLAGS) -L../nc_cfg -L/usr/lib64 -m64
+  LINKCMD = $(CC) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
@@ -37,49 +46,31 @@ all: prebuild prelink $(TARGET)
 
 endif
 
-ifeq ($(config),test_win64)
-  RESCOMP = windres
+ifeq ($(config),game_win64)
+  ifeq ($(origin CC), default)
+    CC = F:\dev\gcc\bin\gcc.exe
+  endif
+  ifeq ($(origin CXX), default)
+    CXX = F:\dev\gcc\bin\g++.exe
+  endif
+  ifeq ($(origin AR), default)
+    AR = ar
+  endif
+  RESCOMP = default
   TARGETDIR = bin_cxx
-  TARGET = $(TARGETDIR)/nc_lua.lib
-  OBJDIR = bin_cxx/win64/test
-  DEFINES += -DNDEBUG -DNC_NDEBUG
-  INCLUDES += -I%(prj.name)/src_cxx
+  TARGET = $(TARGETDIR)/nc_lua
+  OBJDIR = bin_cxx/win64/game
+  DEFINES +=
+  INCLUDES += -Isrc_cxx
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -ffast-math -O2 -std=c99
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -ffast-math -O2
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -w -std=c99 -fpermissive
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -w -fpermissive
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += ../nc_lib/bin_cxx/nc_lib.lib
-  LDDEPS += ../nc_lib/bin_cxx/nc_lib.lib
-  ALL_LDFLAGS += $(LDFLAGS) -L../nc_cfg -L../nc_lib -L/usr/lib64 -m64 -s
-  LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
-  define PREBUILDCMDS
-  endef
-  define PRELINKCMDS
-  endef
-  define POSTBUILDCMDS
-  endef
-all: prebuild prelink $(TARGET)
-	@:
-
-endif
-
-ifeq ($(config),play_win64)
-  RESCOMP = windres
-  TARGETDIR = bin_cxx
-  TARGET = $(TARGETDIR)/nc_lua.lib
-  OBJDIR = bin_cxx/win64/play
-  DEFINES += -DNDEBUG -DNC_NDEBUG
-  INCLUDES += -I%(prj.name)/src_cxx
-  FORCE_INCLUDE +=
-  ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -ffast-math -O3 -std=c99
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -ffast-math -O3
-  ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-  LIBS += ../nc_lib/bin_cxx/nc_lib.lib
-  LDDEPS += ../nc_lib/bin_cxx/nc_lib.lib
-  ALL_LDFLAGS += $(LDFLAGS) -L../nc_cfg -L../nc_lib -L/usr/lib64 -m64 -s
-  LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
+  LIBS += ../nc_cfg/bin_cxx/nc_cfg.lib
+  LDDEPS += ../nc_cfg/bin_cxx/nc_cfg.lib
+  ALL_LDFLAGS += $(LDFLAGS) -L../nc_cfg -L/usr/lib64 -m64 -s
+  LINKCMD = $(CC) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
@@ -92,6 +83,41 @@ all: prebuild prelink $(TARGET)
 endif
 
 OBJECTS := \
+	$(OBJDIR)/nc_lua_api.o \
+	$(OBJDIR)/nc_lua_code.o \
+	$(OBJDIR)/nc_lua_ctype.o \
+	$(OBJDIR)/nc_lua_dbg.o \
+	$(OBJDIR)/nc_lua_do.o \
+	$(OBJDIR)/nc_lua_dump.o \
+	$(OBJDIR)/nc_lua_func.o \
+	$(OBJDIR)/nc_lua_gc.o \
+	$(OBJDIR)/nc_lua_init.o \
+	$(OBJDIR)/nc_lua_lex.o \
+	$(OBJDIR)/nc_lua_mem.o \
+	$(OBJDIR)/nc_lua_obj.o \
+	$(OBJDIR)/nc_lua_op_codes.o \
+	$(OBJDIR)/nc_lua_parser.o \
+	$(OBJDIR)/nc_lua_state.o \
+	$(OBJDIR)/nc_lua_str.o \
+	$(OBJDIR)/nc_lua_tab.o \
+	$(OBJDIR)/nc_lua_tagm.o \
+	$(OBJDIR)/nc_lua_undump.o \
+	$(OBJDIR)/nc_lua_utf8.o \
+	$(OBJDIR)/nc_lua_vm.o \
+	$(OBJDIR)/nc_lua_zbuf.o \
+	$(OBJDIR)/nc_lua_lib_aux.o \
+	$(OBJDIR)/nc_lua_lib_base.o \
+	$(OBJDIR)/nc_lua_lib_coro.o \
+	$(OBJDIR)/nc_lua_lib_dbg.o \
+	$(OBJDIR)/nc_lua_lib_io.o \
+	$(OBJDIR)/nc_lua_lib_load.o \
+	$(OBJDIR)/nc_lua_lib_math.o \
+	$(OBJDIR)/nc_lua_lib_os.o \
+	$(OBJDIR)/nc_lua_lib_str.o \
+	$(OBJDIR)/nc_lua_lib_tab.o \
+	$(OBJDIR)/nc_lua_comp.o \
+	$(OBJDIR)/nc_lua_entry.o \
+	$(OBJDIR)/nc_lua_pch.o \
 
 RESOURCES := \
 
@@ -150,6 +176,286 @@ else
 $(OBJECTS): | $(OBJDIR)
 endif
 
+$(OBJDIR)/nc_lua_api.o: src_cxx/core/nc_lua_api.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_code.o: src_cxx/core/nc_lua_code.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_ctype.o: src_cxx/core/nc_lua_ctype.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_dbg.o: src_cxx/core/nc_lua_dbg.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_do.o: src_cxx/core/nc_lua_do.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_dump.o: src_cxx/core/nc_lua_dump.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_func.o: src_cxx/core/nc_lua_func.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_gc.o: src_cxx/core/nc_lua_gc.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_init.o: src_cxx/core/nc_lua_init.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lex.o: src_cxx/core/nc_lua_lex.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_mem.o: src_cxx/core/nc_lua_mem.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_obj.o: src_cxx/core/nc_lua_obj.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_op_codes.o: src_cxx/core/nc_lua_op_codes.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_parser.o: src_cxx/core/nc_lua_parser.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_state.o: src_cxx/core/nc_lua_state.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_str.o: src_cxx/core/nc_lua_str.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_tab.o: src_cxx/core/nc_lua_tab.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_tagm.o: src_cxx/core/nc_lua_tagm.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_undump.o: src_cxx/core/nc_lua_undump.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_utf8.o: src_cxx/core/nc_lua_utf8.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_vm.o: src_cxx/core/nc_lua_vm.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_zbuf.o: src_cxx/core/nc_lua_zbuf.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_aux.o: src_cxx/lib/nc_lua_lib_aux.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_base.o: src_cxx/lib/nc_lua_lib_base.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_coro.o: src_cxx/lib/nc_lua_lib_coro.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_dbg.o: src_cxx/lib/nc_lua_lib_dbg.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_io.o: src_cxx/lib/nc_lua_lib_io.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_load.o: src_cxx/lib/nc_lua_lib_load.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_math.o: src_cxx/lib/nc_lua_lib_math.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_os.o: src_cxx/lib/nc_lua_lib_os.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_str.o: src_cxx/lib/nc_lua_lib_str.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_lib_tab.o: src_cxx/lib/nc_lua_lib_tab.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_comp.o: src_cxx/nc_lua_comp.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_entry.o: src_cxx/nc_lua_entry.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+$(OBJDIR)/nc_lua_pch.o: src_cxx/nc_lua_pch.cxx
+	@echo $(notdir $<)
+ifeq ($(config),work_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
+ifeq ($(config),game_win64)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+endif
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))
