@@ -1,8 +1,8 @@
 #ifndef NC_LUA_HXX
 #   define NC_LUA_HXX
-// core //
+/* core */
 #   include "nc_lua_core.hxx"
-// standard //
-// libraries //
+/* standard */
+/* libraries */
 /* end_of_file */
-#endif  // NC_LUA_HXX //
+#endif  /* NC_LUA_HXX */

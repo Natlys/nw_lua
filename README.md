@@ -1,4 +1,3 @@
-# nc_lua
-native_code lua library;
-originally, this is lua_api for c-language but this is configurated version for nw workspace;
-it allows to backup lua lib state to restore that in the case of a failure;
+# nati_code_lua #
+-> this is the scripting part of nati_code;\n
+-> here is lua recreation which allows to make own native scripting;\n

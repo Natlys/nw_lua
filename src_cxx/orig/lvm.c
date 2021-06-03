@@ -1764,7 +1764,7 @@ void luaV_execute (lua_State *L, CallInfo *ci) {
            'ra + 2' has the control variable, and 'ra + 3' has the
            to-be-closed variable. The call will use the stack after
            these values (starting at 'ra + 4')
-        */
+       */
         /* push function, state, and control variable */
         memcpy(ra + 4, ra, 3 * sizeof(*ra));
         L->top = ra + 4 + 3;

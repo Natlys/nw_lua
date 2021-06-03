@@ -1,7 +1,7 @@
 #ifndef NC_LUA_CORE_HPP
 #   define NC_LUA_CORE_HPP
 /* config */
-// building //
+/* building */
 #   if (defined NC_BUILD)
 #       undef NC_BUILD
 #   endif   /* NC_BUILD */
@@ -9,9 +9,9 @@
 /* defines */
 /** constants **/
 /** functions **/
-// include //
+/* include */
 #   include "nc_lua_pch.hpp"
-// linkage //
+/* linkage */
 #   if (defined NC_API)
 #       undef NC_API
 #   endif   /* NC_API */
@@ -26,4 +26,4 @@
 #       define NC_API NC_DLL_IMPORT
 #   endif	/* NC_BUILD */
 /* end_of_file */
-#endif	// NC_LUA_CORE_HPP //
+#endif	/* NC_LUA_CORE_HPP */
