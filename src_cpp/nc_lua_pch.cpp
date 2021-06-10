@@ -1,8 +1,0 @@
-#include "nc_lua_pch.hpp"
-#include "nc_lua.hpp"
-#if (defined NC_API)
-v1bit_t nc_lua_test() {
-    return NC_TRUTH;
-}
-#endif  /* NC_API */
-/* end_of_file */
