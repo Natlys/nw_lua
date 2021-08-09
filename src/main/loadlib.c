@@ -679,7 +679,7 @@ static int ll_require (lua_State *L) {
     lua_copy(L, -1, -2);  /* replace loader result */
     lua_setfield(L, 2, name);  /* LOADED[name] = true */
   }
-  lua_rotate(L, -2, 1);  /* loader data <-> module result */
+  lua_rotate(L, -2, 1);  /* loader data <-> module result  */
   return 2;  /* return module result and loader data */
 }
 

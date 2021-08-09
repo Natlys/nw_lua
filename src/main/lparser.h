@@ -36,10 +36,10 @@ typedef enum {
   VNONRELOC,  /* expression has its value in a fixed register;
                  info = result register */
   VLOCAL,  /* local variable; var.ridx = register index;
-              var.vidx = relative index in 'actvar.arr' */
+              var.vidx = relative index in 'actvar.arr'  */
   VUPVAL,  /* upvalue variable; info = index of upvalue in 'upvalues' */
   VCONST,  /* compile-time <const> variable;
-              info = absolute index in 'actvar.arr' */
+              info = absolute index in 'actvar.arr'  */
   VINDEXED,  /* indexed variable;
                 ind.t = table register;
                 ind.idx = key's R index */
@@ -78,7 +78,7 @@ typedef struct expdesc {
     } ind;
     struct {  /* for local variables */
       lu_byte ridx;  /* register holding the variable */
-      unsigned short vidx;  /* compiler index (in 'actvar.arr') */
+      unsigned short vidx;  /* compiler index (in 'actvar.arr')  */
     } var;
   } u;
   int t;  /* patch list of 'exit when true' */

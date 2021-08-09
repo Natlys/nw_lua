@@ -1,43 +1,85 @@
-# directories
-bin/
-ext/
-.vs/
-data/
-ext/
+#======#
+# main #
+#======#
 
-# gPrerequisites
-*.d
+# binaries #
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+*/bin/**.d    # cxx/cpp debug symbols
 
-# Precompiled Headers
-*.gch
-*.pch
-*.pdb
+*/bin/**.o    # cxx/cpp output files
+*/bin/**.obj  # cxx/cpp output files
+*/bin/**.lo   # cxx/cpp output files
+*/bin/**.slo  # cxx/cpp output files
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+*/bin/**.gch  # cxx/cpp gnu precompiled headers
+*/bin/**.pch  # cxx/cpp vs precompiled headers
+*/bin/**.pdb  # cxx/cpp debug precompiled headers
 
-# Fortran module files
-*.mod
-*.smod
+*/bin/**.so    # cxx/cpp dynamic libraries
+*/bin/**.dll   # cxx/cpp dynamic libraries
+*/bin/**.dylib # cxx/cpp dynamic libraries
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+*/bin/**.a   # cxx/cpp static libraries
+*/bin/**.la  # cxx/cpp static libraries
+*/bin/**.lai # cxx/cpp static libraries
+*/bin/**.lib # cxx/cpp static libraries
 
-# Executables
-*.exe
-*.out
-*.app
+*/bin/**.app # cxx/cpp executables
+*/bin/**.out # cxx/cpp executables
+*/bin/**.exe # cxx/cpp windows executables
 
-# Visual studio
-*.vcx**
+*/bin/**.mod  # fortran modules
+*/bin/**.smod # fortran modules
+
+*/bin/**.zip # archive files
+
+*/bin/**.jar # java archive files
+*/bin/**.war # java archive files
+
+# sources #
+
+# resources #
+
+*/rsc/movi/      # video data
+*/rsc/mesh/*.obj # mesh model
+*/rsc/mesh/*.mtl # mesh material
+*/rsc/mesh/*.dae # model data
+
+# libraries #
+
+*/lib/**.so    # cxx/cpp dynamic libraries
+*/lib/**.dll   # cxx/cpp dynamic libraries
+*/lib/**.dylib # cxx/cpp dynamic libraries
+
+*/lib/**.a   # cxx/cpp static libraries
+*/lib/**.la  # cxx/cpp static libraries
+*/lib/**.lai # cxx/cpp static libraries
+*/lib/**.lib # cxx/cpp static libraries
+
+*/lib/**.app # cxx/cpp executables
+*/lib/**.out # cxx/cpp executables
+*/lib/**.exe # cxx/cpp windows executables
+
+*/lib/**.mod  # fortran modules
+*/lib/**.smod # fortran modules
+
+*/lib/**.zip # archive files
+
+*/lib/**.jar # java archive files
+*/lib/**.war # java archive files
+
+# environment #
+
+*/.env/**.BROWSE* # visual studio code extension
+*/.env/**.cache*  # visual studio code extension
+*/.env/**.cache_* # visual studio code extension
+*/.env/**._cache* # visual studio code extension
+
+*/.env/**.vcx* # visual studio ide
+
+*/.env/**.target  # maven files
+*/.env/**.project # maven files
+
+#======#
+# endf #
+#======#

@@ -1,0 +1,21 @@
+{
+	"folders":
+	[
+		//*/
+		{
+			"path": "../../",
+			"name": "nc_lua",
+		}
+		//*/
+	],
+	"settings":
+	{
+		/* vscode */
+		/* file_workers */
+		/* builders */
+		/** makefile **/
+		"makefile.extensionOutputFolder": "./.make/.vscode"
+		/* languages */
+		/* utilities*/
+	}
+}

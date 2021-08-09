@@ -548,8 +548,8 @@ typedef struct Proto {
   int sizep;  /* size of 'p' */
   int sizelocvars;
   int sizeabslineinfo;  /* size of 'abslineinfo' */
-  int linedefined;  /* debug information */
-  int lastlinedefined;  /* debug information */
+  int linedefined;  /* debug information  */
+  int lastlinedefined;  /* debug information  */
   TValue *k;  /* constants used by the function */
   Instruction *code;  /* opcodes */
   struct Proto **p;  /* functions defined inside the function */

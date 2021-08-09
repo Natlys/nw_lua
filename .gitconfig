@@ -9,4 +9,4 @@
 		clean=indent
 		smodge=cat
 [commit]
-	template = ~/.gitmessage
+	template = .github/.gitmessage
