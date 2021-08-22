@@ -1,0 +1,569 @@
+/* schemas */
+{
+	"folders":
+	[
+		//*/
+		{
+			"name": "environ",
+			"path": "../"
+		},
+		//*/
+		//*/
+		{
+			"name": "nc_lua",
+			"path": "../../"
+		},
+		//*/
+	],
+	"settings":
+	{
+		/* vscode */
+		/** window **/
+		"window.title": "${appName}",
+		/** workbench **/
+		"workbench.hover.delay": 500,
+		"workbench.tips.enabled": true,
+		"workbench.externalUriOpeners": {},
+		"workbench.editorAssociations": {},
+		"workbench.startupEditor": "readme",
+		/*** icons ***/
+		"workbench.iconTheme": "material-icon-theme",
+		"workbench.productIconTheme": "Default",
+		/*** editor ***/
+		"workbench.editor.showIcons": true,
+		/*** customization ***/
+		"workbench.colorCustomizations":
+		{
+		},
+		/** editor **/
+		"editor.autoClosingDelete": "always",
+		"editor.semanticHighlighting.enabled": true,
+		"editor.hideCursorInOverviewRuler": true,
+		"editor.hover.delay": 150,
+		"editor.renderControlCharacters": true,
+		"editor.columnSelection": false,
+		/*** cursor ***/
+		"editor.cursorStyle": "line",
+		"editor.cursorWidth": 2,
+		"editor.cursorBlinking": "blink",
+		/*** text ***/
+		"editor.tabCompletion": "on",
+		"editor.tabSize": 4,
+		"editor.fontLigatures": true,
+		"editor.fontSize": 14,
+		"editor.fontWeight": 400,
+		"editor.fontFamily":
+		"Inconsolata, MonoId, Consolas, 'Courier New', monospace",
+		/** explorer **/
+		"explorer.compactFolders": true,
+		"explorer.enableDragAndDrop": true,
+		/*** confirm ***/
+		"explorer.confirmDelete": false,
+		"explorer.confirmDragAndDrop": false,
+		/** terminal **/
+		"terminal.explorerKind": "integrated",
+		"terminal.integrated.cwd": "${workspaceFolder}",
+		/*** bell ***/
+		"terminal.integrated.enableBell": true,
+		"terminal.integrated.bellDuration": 1000,
+		"terminal.integrated.commandsToSkipShell": [],
+		/*** allow ***/
+		"terminal.integrated.confirmOnExit": false,
+		"terminal.integrated.allowChords": true,
+		"terminal.integrated.allowMnemonics": false,
+		"terminal.integrated.copyOnSelection": false,
+		"terminal.integrated.defaultLocation": "view",
+		/*** environ ***/
+		"terminal.integratedenv.osx":
+		{
+		},
+		"terminal.integratedenv.linux":
+		{
+		},
+		"terminal.integratedenv.windows":
+		{
+		},
+		/*** profile ***/
+		"terminal.integrated.profiles.osx":
+		{
+			"bash":
+			{
+				"overrideName": false,
+				"path": "bash",
+				"env": { },
+				"args": [ ],
+				"icon": "terminal-bash",
+				"color": "terminal.ansiWhite",
+			},
+			"zsh":
+			{
+				"overrideName": false,
+				"path": "zsh",
+				"env": { },
+				"args": [ ],
+				"icon": "console",
+				"color": "terminal.ansiMagenta",
+			},
+			"fish":
+			{
+				"overrideName": false,
+				"path": "fish",
+				"env": {},
+				"args": [],
+				"icon": "console",
+				"color": "terminal.ansiBlue",
+			},
+			"tmux":
+			{
+				"overrideName": false,
+				"path": "tmux",
+				"env": { },
+				"args": [ ],
+				"icon": "terminal-tmux",
+				"color": "terminal.ansiYellow",
+			},
+			"pwsh":
+			{
+				"overrideName": false,
+				"path": "pwsh",
+				"env": {},
+				"args": [],
+				"icon": "terminal-powershell",
+				"color": "terminal.ansiCyan"
+			}
+		},
+		"terminal.integrated.profiles.linux":
+		{
+			"bash":
+			{
+				"overrideName": false,
+				"path": "bash",
+				"env": { },
+				"args": [ ],
+				"icon": "terminal-bash",
+				"color": "terminal.ansiWhite",
+			},
+			"zsh":
+			{
+				"overrideName": false,
+				"path": "zsh",
+				"env": { },
+				"args": [ ],
+				"icon": "console",
+				"color": "terminal.ansiMagenta",
+			},
+			"fish":
+			{
+				"overrideName": false,
+				"path": "fish",
+				"env": {},
+				"args": [],
+				"icon": "console",
+				"color": "terminal.ansiBlue",
+			},
+			"tmux":
+			{
+				"overrideName": false,
+				"path": "tmux",
+				"env": { },
+				"args": [ ],
+				"icon": "terminal-tmux",
+				"color": "terminal.ansiYellow",
+			},
+			"pwsh":
+			{
+				"overrideName": false,
+				"path": "pwsh",
+				"env": {},
+				"args": [],
+				"icon": "terminal-powershell",
+				"color": "terminal.ansiCyan"
+			}
+		},
+		"terminal.integrated.profiles.windows": {
+			"PowerShell":
+			{
+				"overrideName": false,
+				"source": "PowerShell",
+				"env": {},
+				"args": [],
+				"icon": "terminal-powershell",
+				"color": "terminal.ansiCyan",
+			},
+			"CommandPrompt":
+			{
+				"overrideName": false,
+				"path": [ "${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe" ],
+				"env": {},
+				"args": [],
+				"icon": "terminal-cmd",
+				"color": "terminal.ansiGreen"
+			},
+			"GitBash":
+			{
+				"overrideName": false,
+				"source": "Git Bash",
+				"env": {},
+				"args": [],
+				"icon": "github",
+				"color": "terminal.ansiBlack",
+			},
+		},
+		"terminal.integrated.defaultProfile.osx": null,
+		"terminal.integrated.defaultProfile.linux": null,
+		"terminal.integrated.defaultProfile.windows": "CommandPrompt",
+		/*** shell ***/
+		"terminal.integrated.automationShell.osx": "terminal",
+		"terminal.integrated.automationShell.linux": "xterm",
+		"terminal.integrated.automationShell.windows": "cmd",
+		/*** cursor ***/
+		"terminal.integrated.altClickMovesCursor": true,
+		"terminal.integrated.cursorStyle": "underline",
+		"terminal.integrated.cursorBlinking": true,
+		"terminal.integrated.cursorWidth": 2,
+		/*** text ***/
+		"terminal.integrated.fontSize": 14,
+		"terminal.integrated.fontWeight": 400,
+		"terminal.integrated.fontWeightBold": 1000,
+		"terminal.integrated.fontFamily": "Inconsolata, MonoId, Consolas",
+		/** workbench **/
+		"workbench.colorTheme": "Default Dark+",
+    	"workbench.preferredDarkColorTheme": "Default Dark+",
+		/*** actbar ***/
+		"workbench.activityBar.visible": true,
+		"workbench.activityBar.iconClickBehavior": "focus",
+		/*** cmdpal ***/
+		"workbench.commandPalette.history": 50,
+		"workbench.commandPalette.preserveInput": false,
+		/*** editor ***/
+		"workbench.editor.limit.enabled": true,
+		"workbench.editor.limit.value": 7,
+		"workbench.editor.tabSizing": "fit",
+		"workbench.editor.closeOnFileDelete": true,
+		"workbench.editor.enablePreview": true,
+		/** files **/
+		"files.encoding": "windows1251",
+		"files.associations":
+		{
+			"*.cxx": "c",
+			"*.hxx": "c",
+			"*.cpp": "cpp",
+			"*.hpp": "cpp",
+			"*.csc": "cs",
+			"*.lua": "lua",
+			"*.jav": "java",
+			"*.jsn": "jsosnc",
+			"*.pyt": "py",
+			"*.json": "jsonc",
+			"*.c": "c",
+			"*.h": "c",
+			"*.prem": "lua",
+			"*.make": "makefile",
+			"*.o": "c",
+			"*.obj": "cpp",
+			"*.txt": "plaintext",
+			"*.git*": "git"
+		},
+		"files.exclude":
+		{
+			/* source_control */
+			"**/.git": false,
+			/* java_generated */
+			"***.target": false,
+			"***.project": false,
+			"***.classpath": false,
+		},
+		/* extensions */
+		"extensions.closeExtensionDetailsOnViewChange": false,
+		"extensions.ignoreRecommendations": false,
+		"extensions.webWorker": false,
+		"extensions.supportVirtualWorkspaces":
+		{
+			"pub.name": false
+		},
+		/* file_workers */
+		/** hexeditor **/
+		"hexeditor.maxFileSize": 10,
+		"hexeditor.defaultEndianness": "little",
+		"hexeditor.dataInspector.autoReveal": true,
+		/** drawio **/
+		"hediet.vscode-drawio.offline": true,
+		"hediet.vscode-drawio.online-url": "https://embed.diagrams.net/",
+		"hediet.vscode-drawio.theme": "dark",
+		"hediet.vscode-drawio.codeLinkActivated": false,
+		"hediet.vscode-drawio.plugins": [],
+		"hediet.vscode-drawio.knownPlugins": [],
+		"hediet.vscode-drawio.presetColors": [],
+		/*** custom ***/
+		"hediet.vscode-drawio.customFonts":
+		[ "Inconsolata", "MonoId", "Consolas" ],
+		"hediet.vscode-drawio.customLibraries": [],
+		"hediet.vscode-drawio.customColorSchemes":
+		[
+			[
+				{ "fill": "#0000ff", "stroke": "none", "gradient": "none" },
+				{ "fill": "#00ff00", "stroke": "none", "gradient": "none" },
+				{ "fill": "#ff0000", "stroke": "none", "gradient": "none" },
+			]
+		],
+		/* contribution */
+		/** git **/
+		"git.enabled": true,
+		"git.timeline.date": "committed",
+		/*** submodules ***/
+		"git.ignoreSubmodules": false,
+		"git.detectSubmodules": true,
+		"git.detectSubmodulesLimit": 10,
+		/** github **/
+		"github-enterprise.uri": "",
+		/** gitlab **/
+		"gitlab.remoteName": "root",
+		/** liveshare **/
+		"liveshare.allowInvites": "none",
+		/* view */
+		/** vsicons **/
+		"vsicons.associations.files":
+		[
+		],
+		"vsicons.associations.folders":
+		[
+		],
+		/** material_icons **/
+		"material-icon-theme.opacity": 1.0,
+		"material-icon-theme.saturation": 1.0,
+		"material-icon-theme.folders.theme": "specific",
+		"material-icon-theme.folders.color": "#90a4ae",
+		"material-icon-theme.activeIconPack": "angular",
+		/*** visibility ***/
+		"material-icon-theme.hidesExplorerArrows": false,
+		"material-icon-theme.showWelcomeMessage": true,
+		"material-icon-theme.showReloadMessage": true,
+		"material-icon-theme.showUpdateMessage": false,
+		/*** association ***/
+		"material-icon-theme.languages.associations":
+		{
+		},
+		"material-icon-theme.files.associations":
+		{
+			/* workspace */
+			/* versions */
+			"*.git"  : "Git",
+			"*.gith" : "GitHub",
+			"*.gitl" : "GitLab",
+			/* builds */
+			"*.bazel" : "Bazel",
+			"*.maven" : "Maven",
+			"*.pmake" : "Lua",
+			"*.gmake" : "Make",
+			"*.cmake" : "CMake",
+			/* binary */
+			"*.o"     : "C",
+			"*.out"   : "CSharp",
+			"*.luac"  : "Lua",
+			"*.class" : "Java",
+			/* source */
+			"*.c"   : "C",
+			"*.h"   : "H",
+			"*.cxx" : "C",
+			"*.hxx" : "H",
+			"*.cpp" : "CPP",
+			"*.hpp" : "HPP",
+			"*.csc" : "CSharp",
+		},
+		"material-icon-theme.folders.associations":
+		{
+			/* workspace */
+			".sbl"  : "Sublime",
+			".vs"   : "VSCode",
+			".vsc"  : "VSCode",
+			".venv" : "Environment",
+			/* versions */
+			".git"  : "Git",
+			".gith" : "Github",
+			".gitl" : "Gitlab",
+			/* builds */
+			".bazel" : "Custom",
+			".maven" : "Custom",
+			".cmake" : "Custom",
+			".gmake" : "Custom",
+			".pmake" : "Custom",
+			/* languages */
+			"cpp" : "Src",
+			"cxx" : "Src",
+			"csc" : "Src",
+			"jav" : "Src",
+			"lua" : "Src",
+			/* others */
+			"cor"  : "Core",
+			"main" : "Core",
+			"tmp"  : "Temp",
+			"cfg"  : "Config",
+			"cmd"  : "Command",
+			"rsc"  : "Resource",
+			"anim" : "Animation",
+			"audi" : "Audio",
+			"draw" : "Animation",
+			"movi" : "Video",
+			"imag" : "Images",
+			"mesh" : "Images",
+			"dbg"  : "Debug",
+		},
+		/** pdfread **/
+		"pdf-preview.default.scale": "auto",
+		/** 3dviewer **/
+		"3dviewer.background": "#8f8f8f",
+		/* intelligence */
+		/** intellicode **/
+		"vsintellicode.sql.completionsEnabled": true,
+		"vsintellicode.java.completionsEnabled": true,
+		"vsintellicode.python.completionsEnabled": true,
+		"vsintellicode.typescript.completionsEnabled": true,
+		"vsintellicode.features.python.deepLearning": "enabled",
+		"vsintellicode.modify.editor.suggestSelection": "enabled",
+		/* buildsys */
+		/** bazel **/
+		"bazel.enableCodeLens": false,
+		"bazel.queriesShareServer": false,
+		"bazel.pathsToIgnore": [],
+		/*** commandline ***/
+		"bazel.commandLine.commandArgs": [],
+		"bazel.commandLine.startupOptions": [],
+		/*** buildifier ***/
+		"bazel.buildifierPath": "",
+		"bazel.buildifierFixOnFormat": false,
+		/** gmake **/
+		"makefile.makePath": "gmake",
+		"makefile.makeDirectory": "${workspaceFolder}",
+		"makefile.makefilePath": ".make/makefile",
+		"makefile.alwaysPreConfigure": false,
+		"makefile.additionalCompilerNames": ["gcc","g++","gxx","gpp"],
+		"makefile.excludeCompilerNames": [],
+		/*** files ***/
+		"makefile.extensionOutputFolder": "${workspaceFolder}/.env/.gmake",
+		"makefile.buildLog": "${workspaceFolder}/.env/.gmake/build.log",
+		"makefile.extensionLog": "${workspaceFolder}/.env/.gmake/output.log",
+		"makefile.configurationCachePath": "${workspaceFolder}/.env/.gmake/configurationCache.log",
+		/** maven **/
+		"maven.view": "hierarchical",
+		"maven.showInExplorerContextMenu": true,
+		"maven.excludedFolders": [],
+		/*** executable ***/
+		"maven.executable.preferMavenWrapper": false,
+		"maven.executable.options": "",
+		/*** pomfile ***/
+		"maven.pomfile.autoUpdateEffectivePOM": false,
+		"maven.pomfile.globPattern": "**/pom.xml",
+		/*** terminal ***/
+		"maven.terminal.useJavaHome": true,
+		"maven.terminal.customEnv": [],
+		"maven.terminal.favorites": [],
+		/* languages */
+		/** cplusplus **/
+		"C_Cpp.codeFolding": "Enabled",
+		"C_Cpp.preferredPathSeparator": "Forward Slash",
+		"C_Cpp.configurationWarnings": "Enabled",
+		"C_Cpp.commentContinuationPatterns": [ "/**", ],
+		/*** default ***/
+		"C_Cpp.default.cStandard": "c89",
+		"C_Cpp.default.cppStandard": "c++98",
+		"C_Cpp.default.configurationProvider": "",
+		"C_Cpp.default.intelliSenseMode": "gcc-x64",
+		"C_Cpp.default.compilerPath": null,
+		"C_Cpp.default.compilerArgs": [],
+		"C_Cpp.default.compileCommands": "",
+		"C_Cpp.default.customConfigurationVariables": {},
+		"C_Cpp.default.enableConfigurationSquiggles": true,
+		"C_Cpp.default.browse.databaseFilename": "./.env/.vscode/cxxdata",
+		"C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true,
+		"C_Cpp.default.defines": [ ],
+		"C_Cpp.default.systemIncludePath": [ ],
+		"C_Cpp.default.browse.path": [ "${workspaceFolder}/src" ],
+		"C_Cpp.default.forcedInclude": [ ],
+		"C_Cpp.default.includePath": [ "${workspaceFolder}/src", ],
+		"C_Cpp.default.macFrameworkPath": [],
+		"C_Cpp.default.windowsSdkVersion": "10.0.17134.0",
+		/*** automation ***/
+		"C_Cpp.autocomplete": "Default",
+		"C_Cpp.autoAddFileAssociations": false,
+		"C_Cpp.autocompleteAddParentheses": false,
+		/** csharp **/
+		"csharp.format.enable": true,
+		/*** intellisense ***/
+		"csharp.semanticHighlighting.enabled": false,
+		"csharp.showOmnisharpLogOnError": true,
+		"csharp.referencesCodeLens.enabled": true,
+		"csharp.referencesCodeLens.filteredSymbols": [],
+		"csharp.maxProjectFileCountForDiagnosticAnalysis": 100,
+		/*** supress ***/
+		"csharp.suppressDotnetInstallWarning": false,
+		"csharp.suppressBuildAssetsNotification": false,
+		"csharp.suppressDotnetRestoreNotification": false,
+		"csharp.suppressProjectJsonWarning": false,
+		"csharp.suppressHiddenDiagnostics": true,
+		"csharp.testsCodeLens.enabled": true,
+		"csharp.unitTestDebuggingOptions": {},
+		/** java **/
+		"java.autobuild.enabled": true,
+		/*** codegen ***/
+		"java.codeGeneration.generateComments": false,
+		/** lua **/
+		"Lua.color.mode": "Semantic",
+		/*** completion ***/
+		"Lua.completion.autoRequire": true,
+		"Lua.completion.callSnippet": "Disable",
+		/** mongodb **/
+		"mdb.shell": "mongosh",
+		"mdb.confirmRunAll": true,
+		"mdb.defaultLimit": 10,
+		"mdb.sendTelemetry": false,
+		"mdb.useDefaultTemplateForPlayground": true,
+		/*** showings ***/
+		"mdb.showMongoDBPlaygrounds": true,
+		"mdb.showMongoDBHelpExplorer": true,
+		"mdb.showMongoDBConnectionExplorer": true,
+		"mdb.connectionSaving.defaultConnectionSavingLocation": "Global",
+		"mdb.connectionSaving.hideOptionToChooseWhereToSaveNewConnections": true,
+		"mdb.excludeFromPlaygroundsSearch":
+		[
+			"**/.*",
+			"**/_output/**",
+			"**/bower_components/**",
+			"**/build/**",
+			"**/dist/**",
+			"**/node_modules/**",
+			"**/out/**",
+			"**/output/**",
+			"**/release/**",
+			"**/releases/**",
+			"**/static/**",
+			"**/target/**",
+			"**/third_party/**",
+			"**/vendor/**"
+		],
+		"mongodbLanguageServer.maxNumberOfProblems": 100,
+		"mongodbLanguageServer.trace.server": { "format": "json", "verbosity": "verbose" },
+		/** glsl **/
+		"glsl-canvas.doubleSided": false,
+		/** hlsl **/
+		"hlsl.openDocOnSide": true,
+		"hlsl.suggest.basic": true,
+		/* utilities */
+		/** fileutils **/
+		"fileutils.typeahead.enabled": true,
+		/** dashboard **/
+		"dashboard.openOnStartup": "always",
+		"dashboard.displayProjectPath": true,
+		"dashboard.projectTileWidth": 200,
+		"dashboard.showAddProjectButtonTile": true,
+		"dashboard.storeProjectsInSettings": false,
+		/*** colors ***/
+		"dashboard.recentColors": [ "#0000ff" ],
+		"dashboard.recentColorsToRemember": 10,
+		/*** custom ***/
+		"dashboard.customCss": "../src/css/drawio.css",
+		"dashboard.customProjectNameColor": "#ffffff",
+		"dashboard.customProjectPathColor": "#aaaaaa",
+		"dashboard.customProjectCardBackground": "#000000",
+	}
+}
+/* endfile */
